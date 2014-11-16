@@ -129,4 +129,14 @@
     <servlet-name>Teste</servlet-name>
     <url-pattern>/Teste</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TestAjax</display-name>
+    <servlet-name>TestAjax</servlet-name>
+    <servlet-class>utilities.TestAjax</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestAjax</servlet-name>
+    <url-pattern>/TestAjax</url-pattern>
+  </servlet-mapping>
 </web-app>
