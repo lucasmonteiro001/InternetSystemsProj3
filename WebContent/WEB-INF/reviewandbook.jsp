@@ -27,7 +27,14 @@
 					<td><jsp:getProperty property="id" name="flightBean" /></td>
 					<td><jsp:getProperty property="departure" name="flightBean" /></td>
 					<td><jsp:getProperty property="arrival" name="flightBean" /></td>
-					<td> 1 </td>
+					<td><div class="form-group">
+						<label class="col-sm-2 control-label" for="number_of_seats">Number
+							of seats</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-group" min="1" max="10"
+								id="number_of_seats" name="number_of_seats" required>
+						</div></td>
+					</div>
 
 				</tr>
 				</tr>
@@ -36,8 +43,10 @@
 		<br>
 	</div>
 	<input type="button" class="btn btn-sm" value="Back to see the flights"
-		onclick="window.history.back();"> <input type="submit"
-		class="btn btn-primary btn-sm" name="send" value="Confirm"
-		align="right" >
+		onclick="window.history.back();"> <input type="button"
+		class="btn btn-sm" value="Add to the cart"
+		onclick="AJAX_FUNCTION_ADD_TO_CART TODO;"> <input
+		type="submit" class="btn btn-primary btn-sm" name="send"
+		value="Confirm" align="right">
 </form>
 <jsp:include page="../WEB-INF/classes/bottom.jsp" />

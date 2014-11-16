@@ -64,22 +64,7 @@ public class FlightSearchQuery extends HttpServlet {
 				System.out.println(session.getAttribute("departure"));
 				
 				flight.setDeparture(new Date(session.getAttribute("departure").toString()));
-				if (request.getParameter("class").equals("economy")) {
-					session.setAttribute ("economyClass", Integer.parseInt(request.getParameter("number_of_seats")));
-					session.setAttribute("businessClass", 0);
-					session.setAttribute("firstClass", 0);
-				}
-				else if (request.getParameter("class").equals("business")) {
-					session.setAttribute ("economyClass", 0);
-					session.setAttribute("businessClass", Integer.parseInt(request.getParameter("number_of_seats")));
-					session.setAttribute("firstClass", 0);
-				}
-				else if (request.getParameter("class").equals("firstclass")) {
-					session.setAttribute ("economyClass", 0);
-					session.setAttribute("businessClass", 0);
-					session.setAttribute("firstClass", Integer.parseInt(request.getParameter("number_of_seats")));
-					
-				}
+	
 				flights = searchFlightDao.readFlight(flight);
 				request.setAttribute("flights", flights);
 				session.setAttribute("flights", flights);
