@@ -1,6 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.Flight"%>
+<%@page import="model.Book"%>
 
 <jsp:include page="../WEB-INF/classes/header.jsp" />
 
@@ -15,7 +16,7 @@
 		role="form">
 
 		<%
-			ArrayList <Flight> fs = (ArrayList <Flight>) session.getAttribute("flights");
+			ArrayList <Book> fs = (ArrayList <Book>) session.getAttribute("ticketToBook");
 			if (fs.size() != 0) {
 		%>
 		<table class="table table-hover" style="background-color: white">
@@ -35,19 +36,19 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="flightBean" items="${requestScope['flightsSelected']}">
+				<c:forEach var="cart" items="${requestScope['ticketToBook']}">
 					<tr>
-						<td><input type="radio" id="${flightBean.id}"
-							name="choosenFlight" value="${flightBean.id}" required></td>
-						<td><c:out value="${flightBean.departure}" /></td>
-						<td><c:out value="${flightBean.source}" /></td>
-						<td><c:out value="${flightBean.destination}" /></td>
-						<td><c:out value="${flightBean.id}" /></td>
-						<td><c:out value="${flightBean.departure}" /></td>
-						<td><c:out value="${flightBean.arrival}" /></td>
-						<td><c:out value="${flightBean.economyClassReserved}" /></td>
-						<td><c:out value="${flightBean.firstClassReserved}" /></td>
-						<td><c:out value="${flightBean.businessClassReserved}" /></td>
+						<td><input type="radio" id="${cart.id}"
+							name="choosenFlight" value="${cart.id}" required></td>
+						<td><c:out value="${cart.departure}" /></td>
+						<td><c:out value="${cart.source}" /></td>
+						<td><c:out value="${cart.destination}" /></td>
+						<td><c:out value="${cart.id}" /></td>
+						<td><c:out value="${cart.departure}" /></td>
+						<td><c:out value="${cart.arrival}" /></td>
+						<td><c:out value="${cart.economyClassReserved}" /></td>
+						<td><c:out value="${cart.firstClassReserved}" /></td>
+						<td><c:out value="${cart.businessClassReserved}" /></td>
 						<td>1</td>
 					</tr>
 				</c:forEach>
