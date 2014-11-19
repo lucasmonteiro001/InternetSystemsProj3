@@ -3,6 +3,8 @@
 	<name>AirTickets_Web_3.0</name>
 	<comment></comment>
 	<projects>
+		<project>RemoteSystemsTempFiles</project>
+		<project>Servers</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>

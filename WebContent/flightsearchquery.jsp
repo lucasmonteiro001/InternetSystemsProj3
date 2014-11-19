@@ -51,12 +51,6 @@ String[] airports = {"ATL", "ANC", "AUS", "BWI", "BOS",
   			</div>
 		</div>
 		<div class="form-group">
-  		<label class="col-sm-2 control-label" for="number_of_seats">Number of seats</label>
-  			<div class="col-sm-10">
-  				<input type="number" class="form-group" min="1" max="10" id="number_of_seats" name="number_of_seats" required>
-  			</div>
-		</div>
-		<div class="form-group">
   			<label class="col-sm-2 control-label" for="class">Class</label>
   			<div class="col-sm-10">
 				<select class="form-group" id="class" name="class">
