@@ -139,4 +139,14 @@
     <servlet-name>TestAjax</servlet-name>
     <url-pattern>/TestAjax</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>Bank</display-name>
+    <servlet-name>Bank</servlet-name>
+    <servlet-class>control.Bank</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Bank</servlet-name>
+    <url-pattern>/Bank</url-pattern>
+  </servlet-mapping>
 </web-app>

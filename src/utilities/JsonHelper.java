@@ -1,12 +1,9 @@
 package utilities;
 
+import com.sun.org.apache.xpath.internal.operations.Bool;
+
 public class JsonHelper {
-	private String SUCCESS 	= "success";
 	private String msg;
-	
-	public JsonHelper(String data) {
-		setMsg(data);
-	}
 	
 	private String getMsg() {
 		return msg;
@@ -20,9 +17,11 @@ public class JsonHelper {
 	 * @param param Receives either "success" or "failed" and builds the string accordingly to it.
 	 * @return json formatted
 	 */
-	public String getJsonFormatted(String param) {
+	public String getJsonFormatted(boolean success, String data) {
 		
-		if (param.equals(SUCCESS)) {
+		this.setMsg(data);
+		
+		if (success == true) {
 			return " {\"success\":\"true\", \"data\":" + this.getMsg() + "}";
 		}
 		else {

@@ -8,14 +8,8 @@
 	<table class="table table-hover" style="background-color:white">
 			<thead>
 				<tr>
-					<th> Date </th>
-					<th> From </th>
-					<th> To </th>
-					<th> Flight Number </th>
-					<th> Departure Time </th>
-					<th> Arrival Time </th>
-					<th> Number of Stops </th>
-					<th> Cost </th>
+					<th> Date </th> <th> From </th> <th> To </th> <th> Flight Number </th>
+					<th> Departure Time </th> <th> Arrival Time </th> <th> Number of Stops </th><th> Cost </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -69,19 +63,21 @@
 		jsonDataObject.accountRoutingNumber = accountRoutingNumber;
 		
 		var jsonData = JSON.stringify(jsonDataObject);
-
 		
-		$.ajax({
-			url : "Transaction",
+		$.ajax({ url : "Bank",
 			type : "GET",
 			data : {action:"export",json:jsonData},
 			contentType: 'application/json',
 			cache: false,
 			success: function(data) {
-				if(data.success == "false")
+				if(data.success == "false") { // If request was not successfull
 			    	error(data.data);
-				else {
+					//On Failure: The page displays a message: "Transaction was not successful"
+				}
+				else { // If success == true
 					clearError();
+					//On Success: Show Success/Failure message and a form for the user to
+					//enter passenger details (Name, Age, Sex, etc...), Print Ticket button. Also calls update_history_function.
 				}
 			},
 			error: function(jqXHR, textStatus, errorThrown) {

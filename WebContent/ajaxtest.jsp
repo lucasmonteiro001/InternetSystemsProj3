@@ -20,11 +20,11 @@
 				if(data.success == "false")
 			    	error(data.data);
 				else {
-					alert(data.data["first-name"]);
+					error("Funcionou!");
 				}
 			},
 			error: function() {
-				error();
+				error("Funcionou!");
 			}
 			
 		});
