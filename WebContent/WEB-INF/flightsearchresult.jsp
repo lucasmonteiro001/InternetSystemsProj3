@@ -29,6 +29,7 @@
 					<th>Departure Time</th>
 					<th>Arrival Time</th>
 					<th>Number of Stops</th>
+					<th>Number of Seats </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -44,6 +45,13 @@
 						<td><c:out value="${flightBean.departure}" /></td>
 						<td><c:out value="${flightBean.arrival}" /></td>
 						<td>1</td>
+						<td><div class="form-group">
+						<label class="col-sm-2 control-label" for="number_of_seats">Number
+							of seats</label>
+						<div class="col-sm-10">
+							<input type="number" class="form-group" min="1" max="10"
+								id="number_of_seats" name="number_of_seats" required>
+						</div></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -80,6 +88,9 @@
 				required : true
 			}
 		}
+	    number_of_seats: {
+	      	required: true
+	    },
 	});
 </script>
 

@@ -27,13 +27,7 @@
 					<td><jsp:getProperty property="id" name="flightBean" /></td>
 					<td><jsp:getProperty property="departure" name="flightBean" /></td>
 					<td><jsp:getProperty property="arrival" name="flightBean" /></td>
-					<td><div class="form-group">
-						<label class="col-sm-2 control-label" for="number_of_seats">Number
-							of seats</label>
-						<div class="col-sm-10">
-							<input type="number" class="form-group" min="1" max="10"
-								id="number_of_seats" name="number_of_seats" required>
-						</div></td>
+					
 					</div>
 
 				</tr>
@@ -49,4 +43,47 @@
 		type="submit" class="btn btn-primary btn-sm" name="send"
 		value="Confirm" align="right">
 </form>
+<script>
+
+	 $("form").submit(function (event) {
+		
+		var flightId 		= $("#flightBean.id").val();
+		
+		var jsonDataObject = new Object();
+		jsonDataObject.flightId 		= flightId;
+		
+		var jsonData = JSON.stringify(jsonDataObject);
+
+		
+		$.ajax({
+			url : "ReviewAndBook",
+			type : "GET",
+			data : {action:"export",json:jsonData},
+			contentType: 'application/json',
+			cache: false,
+			success: function(data) {
+				if(data.success == "false")
+			    	error(data.data);
+				else {
+					clearError();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+			
+		});
+		
+		event.preventDefault();
+	});
+	
+	function clearError() {
+		$(".error").hide();
+	};
+	 
+	function error(msg) {
+		$(".error").html(msg).show();
+	};
+	
+</script>
 <jsp:include page="../WEB-INF/classes/bottom.jsp" />
