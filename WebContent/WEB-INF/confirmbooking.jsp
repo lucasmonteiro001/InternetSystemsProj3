@@ -54,6 +54,11 @@
 <script>
 
 	 $("form").submit(function (event) {
+		confirm_function();
+		event.preventDefault();
+	});
+	 
+	function confirm_function() {
 		
 		var accountHolderId 		= $("#accountHolderId").val();
 		var accountRoutingNumber 	= $("#accountRoutingNumber").val();
@@ -70,24 +75,24 @@
 			contentType: 'application/json',
 			cache: false,
 			success: function(data) {
-				if(data.success == "false") { // If request was not successfull
-			    	error(data.data);
-					//On Failure: The page displays a message: "Transaction was not successful"
-				}
-				else { // If success == true
+				if (data.success == "true") { // If success == true
 					clearError();
 					//On Success: Show Success/Failure message and a form for the user to
 					//enter passenger details (Name, Age, Sex, etc...), Print Ticket button. Also calls update_history_function.
 				}
+				else { // If request was not successfull
+			    	error(data.data);
+					//On Failure: The page displays a message: "Transaction was not successful"
+				}
+				
 			},
 			error: function(jqXHR, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 			
 		});
-		
 		event.preventDefault();
-	});
+	};
 	
 	function clearError() {
 		$(".error").hide();

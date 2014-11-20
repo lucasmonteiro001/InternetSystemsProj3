@@ -22,6 +22,8 @@ String[] airports = {"ATL", "ANC", "AUS", "BWI", "BOS",
 <jsp:include page="WEB-INF/classes/header.jsp"/>
 
 <script type="text/javascript" src="js/masked_input_1.3.js"></script>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
 
 <div class="well well-sm span4">
     <h4>Details of your travel: </h4>
@@ -46,9 +48,9 @@ String[] airports = {"ATL", "ANC", "AUS", "BWI", "BOS",
 		</div>
 		<div class="form-group">
   		<label class="col-sm-2 control-label" for="departure">Departure</label>
-  			<div class="col-sm-10">
-  				<input type="textfield" class="form-group" id="departure" name="departure" required>
-  			</div>
+  			
+  				<input type="text" style="margin-left:1px" class="form-group" id="departure" name="departure" required>
+  			
 		</div>
 		<div class="form-group">
   			<label class="col-sm-2 control-label" for="class">Class</label>
@@ -65,39 +67,17 @@ String[] airports = {"ATL", "ANC", "AUS", "BWI", "BOS",
 	</form>    
 </div>
 
-<script>
-	$("form").validate({
-		rules: {
-		    number_of_seats: {
-		      	required: true
-		    },
-			source: {
-				required: true
-			},
-			destination: {
-				required: true
-			},
-			departure: {
-				required: true,
-				date: true
-			}
-		  }
-	});
-</script>
 
 <script>
-	MaskedInput({
-		  elm: document.getElementById('departure'),
-		  format: 'MM/DD/YYYY',
-		  separator: '\/',
-		  typeon: 'MDY'
-		});
-	MaskedInput({
-		  elm: document.getElementById('arrival'),
-		  format: 'MM/DD/YYYY',
-		  separator: '\/',
-		  typeon: 'MDY'
-		});
+$.datepicker.setDefaults({
+	  showOn: "both"
+	});
+
+$( "#departure" ).datepicker({ 
+	appendText: "&nbsp; (mm-dd-yyyy)",
+	autoSize: true
+});
+
 </script>
 
 <jsp:include page="WEB-INF/classes/bottom.jsp"/>
