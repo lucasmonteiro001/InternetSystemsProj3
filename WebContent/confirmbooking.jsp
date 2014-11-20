@@ -21,7 +21,7 @@
 					<td><jsp:getProperty property="departure" name="flightBean" /></td>
 					<td><jsp:getProperty property="arrival" name="flightBean" /></td>
 					<td> 1 </td>
-					<td> <%= session.getAttribute("totalCostFormatted") %></td>
+					<td> <%= session.getAttribute("totalCost") %></td>
 
 				</tr>
 			</tbody>
