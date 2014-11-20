@@ -61,6 +61,8 @@
 
 		var jsonDataObject = new Object();
 		jsonDataObject.flightId = flightId;
+		jsonDataObject.numberOfSeats = numberOfSeats;
+		jsonDataObject.classe = classe;
 		
 		var jsonData = JSON.stringify(jsonDataObject);
 
