@@ -36,7 +36,7 @@ public class PageUtilities {
 		Map<String, String> systemPages = new HashMap<String, String>();
 		
 		systemPages.put("login.jsp", "Login");
-		systemPages.put("flightsearchquery.jsp", "Flight search");
+		systemPages.put("flightsearchquery.jsp", "Flight Search");
 		systemPages.put("transaction.jsp", "Transaction");
 		systemPages.put("bookinghistory.jsp", "Booking History");
 		systemPages.put("registration.jsp", "Registration");
