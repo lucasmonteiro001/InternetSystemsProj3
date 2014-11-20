@@ -14,7 +14,7 @@
 	<p style="disply: block">Flights you have chosen.</p>
 
 	<%
-		double aggregateCost = 0;	
+		double aggregateCost = 0;
 		ArrayList<Book> fs = (ArrayList<Book>) session
 				.getAttribute("shoppingCart");
 		if (fs != null) {
@@ -31,20 +31,19 @@
 				Iterator<Book> it = fs.iterator();
 					while (it.hasNext()) {
 						Book book = (Book) it.next();
-						%>
+			%>
 			<tr>
-				<td> <%book.getFlightIds(); %> </td>
-				<td> <%book.getNumberOfSeats(); %></td>
-				<td> <%book.getTotalCost(); %> </td>
-			</tr>			
-						<%  
-					 aggregateCost += book.getTotalCost();
+				<td><%=book.getFlightIds()%></td>
+				<td><%=book.getNumberOfSeats()%></td>
+				<td><%=book.getTotalCost()%></td>
+			</tr>
+			<%
+				aggregateCost += book.getTotalCost();
 					}
+
 				} else {
 			%>
-				
-
-			<%
-				}
-			%>
+			Your shopping cart is empty.
+			<%}%>
+			<tr> <td> Total </td> <td> <%=aggregateCost %></td></tr>
 			<jsp:include page="../WEB-INF/classes/bottom.jsp" />

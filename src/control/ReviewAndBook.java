@@ -82,16 +82,16 @@ public class ReviewAndBook extends HttpServlet {
 		else if (classe.equals("business"))
 			cost = Integer.parseInt(numberOfSeats)*TX_BUSINESS_CLASS_SEAT;
 		else if (classe.equals("firstclass"))
-			cost = Integer.parseUnsignedInt(numberOfSeats)*TX_FIRST_CLASS_SEAT;
+			cost = Integer.parseInt(numberOfSeats)*TX_FIRST_CLASS_SEAT;
 		
 		flight = (Flight) session.getAttribute("flightBean");
 		book.setUserId(user.getId());
+		book.setNumberOfSeats(Integer.parseInt(numberOfSeats));
 		book.setFlightIds(flight.getId());
 		book.setTotalCost(cost);
 		shoppingCart.add(book);
 		Iterator<Book> it = shoppingCart.iterator();
 		
-		session.setAttribute("shoppingCart", shoppingCart);
 		
 		
 		while (it.hasNext()) {
