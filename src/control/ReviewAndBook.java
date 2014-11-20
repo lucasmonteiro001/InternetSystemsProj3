@@ -34,9 +34,11 @@ public class ReviewAndBook extends HttpServlet {
 	private final double TX_ECONOMY_SEAT = 123.43;
 	private final double TX_FIRST_CLASS_SEAT = 550;
 	private final double TX_BUSINESS_CLASS_SEAT = 325.56;
-	private List ticketToBook;
+	private List ticketToBook = null;
 	private Flight flight;
-
+	private int economyClass = 0;
+	private int firstClass = 0;
+	private int businessClass = 0;
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -58,7 +60,8 @@ public class ReviewAndBook extends HttpServlet {
 		session = request.getSession();
 		Account account = new Account();
 		Book book = new Book ();
-		
+		String[] classe = request.getParameterValues("class");
+
 
 
 		try {
@@ -66,6 +69,9 @@ public class ReviewAndBook extends HttpServlet {
 			String action = request.getParameter("action");
 			String json = request.getParameter("json");
 			JSONObject jObj = new JSONObject(json);
+			session.setAttribute("classe", jObj.get("classe").toString());
+			session.setAttribute("numberOfSeats",jObj.get("numberOfSeats").toString());
+
 			if (ticketToBook == null) {
 	    		ticketToBook = new ArrayList <Book> ();
 	    	}
@@ -74,37 +80,40 @@ public class ReviewAndBook extends HttpServlet {
 	    	}
 
 			flight = (Flight) session.getAttribute("flightBean");
-			int economyClass = (int) session.getAttribute("economyClass");
-			int businessClass = (int) session.getAttribute("businessClass");
-			int firstClass = (int) session.getAttribute("firstClass");
+		/*	economyClass = (int) session.getAttribute("economyClass");
+			businessClass = (int) session.getAttribute("businessClass");
+			firstClass = (int) session.getAttribute("firstClass");
 			double totalCost = economyClass * TX_ECONOMY_SEAT + businessClass
-					* TX_BUSINESS_CLASS_SEAT + firstClass * TX_FIRST_CLASS_SEAT;
-			User user = (User) session.getAttribute("user");
-			book.setNumberOfSeats(economyClass+businessClass+firstClass);
+					* TX_BUSINESS_CLASS_SEAT + firstClass * TX_FIRST_CLASS_SEAT;*/
+			User user = (User) session.getAttribute("user");/*
+			book.setNumberOfSeats(economyClass+businessClass+firstClass);*/
 			book.setUserId(user.getId());
 			book.setFlightIds(flight.getId());
-			book.setTotalCost(totalCost);
+			//book.setTotalCost(totalCost);
 			double allCosts = 0;
 			Iterator it = ticketToBook.iterator();
 			while (it.hasNext()) {
 				allCosts += ((Book) it.next()).getTotalCost();
+				System.out.println (allCosts);
 			}
 			session.setAttribute("allCosts", allCosts);
-			session.setAttribute("totalCost", totalCost);
+			//session.setAttribute("totalCost", totalCost);
 			ticketToBook.add(book);
 		    session.setAttribute("ticketToBook", ticketToBook);
-
+			RequestDispatcher rd = request
+					.getRequestDispatcher("WEB-INF/shoppingcart.jsp");
+			rd.forward(request, response);
 		} catch (NumberFormatException e) {
 			// TODO Auto-generated catch block
 			String msg = js.getJsonFormatted(false,
 					"Please, enter a valid number of seats");
 			out.print(msg);
-		} catch (NullPointerException e) {
+		}/* catch (NullPointerException e) {
 			String msg = js.getJsonFormatted(false,
 					"Invalid flight information");
 			out.print(msg);
 
-		} catch (JSONException e) {
+		}*/ catch (JSONException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -112,17 +121,14 @@ public class ReviewAndBook extends HttpServlet {
     	
     }
 	
-
-
-	
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		session = request.getSession();
 
 		flight = (Flight) session.getAttribute("flightBean");
-		int economyClass = (int) session.getAttribute("economyClass");
-		int businessClass = (int) session.getAttribute("businessClass");
-		int firstClass = (int) session.getAttribute("firstClass");
+		economyClass = (int) session.getAttribute("economyClass");
+		businessClass = (int) session.getAttribute("businessClass");
+		firstClass = (int) session.getAttribute("firstClass");
 
 		double totalCost = 0;
 		if ((flight.getBusinessClassReserved() - businessClass >= 0)

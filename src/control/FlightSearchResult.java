@@ -50,6 +50,7 @@ public class FlightSearchResult extends HttpServlet {
 		Flight flight = getChoosenFlight(request);
 		session.setAttribute("flightChoosen", flight.getId());
 		session.setAttribute("flightBean", flight);
+
 		RequestDispatcher rd = request
 				.getRequestDispatcher("WEB-INF/reviewandbook.jsp");
 		rd.forward(request, response);
