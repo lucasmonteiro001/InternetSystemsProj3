@@ -34,6 +34,7 @@
 									&& !pg.getCurrPage().equals("registration.jsp")) {
 						%>
 						<li><a href="BookingHistory"> Booking history </a></li>
+						<li><a href="ShoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
 						<%
 							}
 						%>
@@ -53,7 +54,6 @@
 						<li><a href="Logout"><span
 								class="glyphicon glyphicon-off black">&nbsp</span> <jsp:getProperty
 									property="email" name="user" /> </a></li>
-						<a href="ShoppingCart"><span class="glyphicon glyphicon-shopping-cart"></span></a>
 						<%
 							}
 						%>

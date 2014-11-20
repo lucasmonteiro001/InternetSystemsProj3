@@ -45,6 +45,7 @@ public class PageUtilities {
 				"Flights that match your search");
 		systemPages.put("transactionconfirmationpage.jsp",
 				"Transaction confirmation");
+		systemPages.put("shoppingcart.jsp", "Shopping Cart");
 		
 		return systemPages;
 	}
