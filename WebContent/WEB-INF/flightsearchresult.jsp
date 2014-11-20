@@ -38,7 +38,6 @@
 							name="choosenFlight" value="${flightBean.id}" required></td>
 						<td><c:out value="${flightBean.departure}" /></td>
 						<td><c:out value="${flightBean.source}" /></td>
-
 						<td><c:out value="${flightBean.destination}" /></td>
 						<td><c:out value="${flightBean.id}" /></td>
 						<td><c:out value="${flightBean.departure}" /></td>

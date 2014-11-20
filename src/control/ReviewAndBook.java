@@ -91,6 +91,8 @@ public class ReviewAndBook extends HttpServlet {
 		shoppingCart.add(book);
 		Iterator<Book> it = shoppingCart.iterator();
 		
+		session.setAttribute("shoppingCart", shoppingCart);
+		
 		
 		while (it.hasNext()) {
 			totalCost += ((Book) it.next()).getTotalCost();
