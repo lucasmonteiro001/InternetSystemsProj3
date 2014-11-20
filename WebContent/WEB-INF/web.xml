@@ -149,4 +149,14 @@
     <servlet-name>Bank</servlet-name>
     <url-pattern>/Bank</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UpdateBookingHistory</display-name>
+    <servlet-name>UpdateBookingHistory</servlet-name>
+    <servlet-class>control.UpdateBookingHistory</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UpdateBookingHistory</servlet-name>
+    <url-pattern>/UpdateBookingHistory</url-pattern>
+  </servlet-mapping>
 </web-app>

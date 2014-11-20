@@ -22,7 +22,7 @@ public class JsonHelper {
 		this.setMsg(data);
 		
 		if (success == true) {
-			return " {\"success\":\"true\", \"data\":" + this.getMsg() + "}";
+			return " {\"success\":\"true\", \"data\":\"" + this.getMsg() + "\"}";
 		}
 		else {
 			return " {\"success\":\"false\", \"data\":\"" + this.getMsg() + "\"}";
