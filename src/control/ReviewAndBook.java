@@ -55,22 +55,22 @@ public class ReviewAndBook extends HttpServlet {
 		HttpServletResponse response) throws ServletException, IOException{
 		
 		response.setContentType("application/json");
-		PrintWriter out = response.getWriter();
-		JsonHelper js = new JsonHelper();
-		session = request.getSession();
-		Account account = new Account();
-		Book book = new Book ();
-		User user = (User) session.getAttribute("user");
-		double totalCost = 0;
+		JsonHelper js 		= new JsonHelper();
+		session 			= request.getSession();
+		Book book 			= new Book ();
+		User user 			= (User) session.getAttribute("user");
+		double totalCost 	= 0;
+		double cost			= 0;
 		
-		String action = request.getParameter("action");
-		String json = request.getParameter("json");
+		String json 		= request.getParameter("json");
 		JSONObject jObj;
+		String return_msg = "";
 		try {
-			jObj = new JSONObject(json);
-
-		session.setAttribute("classe", jObj.get("classe").toString());
-		session.setAttribute("numberOfSeats",jObj.get("numberOfSeats").toString());
+		jObj = new JSONObject(json);
+		String classe = jObj.get("classe").toString();
+		String numberOfSeats = jObj.get("numberOfSeats").toString();
+		session.setAttribute("classe", classe);
+		session.setAttribute("numberOfSeats", numberOfSeats);
 
 		if (shoppingCart == null && session.getAttribute("shoppingCart") == null) {
 	    	shoppingCart = new ArrayList <Book> ();
@@ -78,21 +78,45 @@ public class ReviewAndBook extends HttpServlet {
 	    else {
 	    	shoppingCart = (ArrayList<Book>) session.getAttribute ("shoppingCart");
 	    }
-
+		
+		if (classe.equals("economy"))
+			cost = Integer.parseInt(numberOfSeats)*TX_ECONOMY_SEAT;
+		else if (classe.equals("business"))
+			cost = Integer.parseInt(numberOfSeats)*TX_BUSINESS_CLASS_SEAT;
+		else if (classe.equals("firstclass"))
+			cost = Integer.parseUnsignedInt(numberOfSeats)*TX_FIRST_CLASS_SEAT;
+		
 		flight = (Flight) session.getAttribute("flightBean");
 		book.setUserId(user.getId());
 		book.setFlightIds(flight.getId());
-			//book.setTotalCost(totalCost);
-		Iterator it = shoppingCart.iterator();
+		book.setTotalCost(cost);
+		shoppingCart.add(book);
+		Iterator<Book> it = shoppingCart.iterator();
+		
+		
 		while (it.hasNext()) {
 			totalCost += ((Book) it.next()).getTotalCost();
 			System.out.println (totalCost);
 		}
 			session.setAttribute("totalCost", totalCost);
-			shoppingCart.add(book);
 		    session.setAttribute("shoppingCart", shoppingCart);
+		    return_msg = js.getJsonFormatted(true,
+					"Ticket added to your shopping cart!");
+		    response.getWriter().print(return_msg);
+		    
 		} catch (JSONException e) {
-			// TODO Auto-generated catch block
+			return_msg = js.getJsonFormatted(false,
+					"Catch de JsonException");
+			response.getWriter().print(return_msg);
+			e.printStackTrace();
+		} catch (NumberFormatException e) {
+			return_msg = js.getJsonFormatted(false,
+					"Catch de NumberFormatException");
+			response.getWriter().print(return_msg);
+		} catch (Exception e) {
+			return_msg = js.getJsonFormatted(false,
+					"Catch de Exception e");
+			response.getWriter().print(return_msg);
 			e.printStackTrace();
 		}
 

@@ -5,6 +5,11 @@
 <form class="form-horizontal" role="form" name="input" action="ReviewAndBook">
 	<h3>You have choosen this flight</h3>
 	<div class="well well-sm span4">
+	<div class="alert alert-success alert-dismissible success" role="alert" style="display:none"> 
+		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
+		<span class="sr-only">Close</span></button>
+	</div>
+	<div class="form-group">
 		<table class="table table-hover" style="background-color: white">
 			<thead>
 				<tr>
@@ -47,6 +52,7 @@
 		</table>
 		<br>
 	</div>
+
 	<input type="button" class="btn btn-sm" value="Back to see the flights"
 		onclick="window.history.back();"> <input type="submit"
 		class="btn btn-primary btn-sm" name="send" value="Confirm"
@@ -55,12 +61,11 @@
 <script>
 	$("form").submit(function(event) {
 
-		var flightId = $("#flightBean.id").val();
+		
 		var numberOfSeats = $("#number_of_seats").val();
 		var classe = $("#class").val();
 
 		var jsonDataObject = new Object();
-		jsonDataObject.flightId = flightId;
 		jsonDataObject.numberOfSeats = numberOfSeats;
 		jsonDataObject.classe = classe;
 		
@@ -74,8 +79,9 @@
 			contentType: 'application/json',
 			cache: false,
 			success: function(data) {
-				if(data.success == "false")
-			    	error(data.data);
+				if(data.success == "true")
+					
+					showDiv(data.data);
 				else {
 					clearError();
 				}
@@ -93,8 +99,8 @@
 		$(".error").hide();
 	};
 	 
-	function error(msg) {
-		$(".error").html(msg).show();
+	function showDiv(msg) {
+		$(".success").html(msg).show();
 	};
 	
 </script>
