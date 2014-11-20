@@ -3,6 +3,8 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="model.Flight"%>
 <%@page import="model.Book"%>
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale" %>
 
 <jsp:include page="../WEB-INF/classes/header.jsp" />
 
@@ -15,6 +17,7 @@
 
 	<%
 		double aggregateCost = 0;
+	 	String aggregateCostFormatted = "Empty Shopping Cart. (0.00)";
 		ArrayList<Book> fs = (ArrayList<Book>) session
 				.getAttribute("shoppingCart");
 		if (fs != null) {
@@ -39,11 +42,15 @@
 			</tr>
 			<%
 				aggregateCost += book.getTotalCost();
+			 	NumberFormat numberFormatter = NumberFormat.getNumberInstance(new Locale ("en_US"));
+			   	aggregateCostFormatted = numberFormatter.format(aggregateCost);
 					}
 
 				} else {
 			%>
 			Your shopping cart is empty.
 			<%}%>
-			<tr> <td> Total </td> <td> <%=aggregateCost %></td></tr>
+			<tr> <td> Total </td> <td> <%=aggregateCostFormatted %></td> <td><a href="confirmbooking.jsp" ><input type="button"
+		class="btn btn-primary btn-sm" name="send" value="Proceed to Checkout"
+		align="right"></a></td></tr>
 			<jsp:include page="../WEB-INF/classes/bottom.jsp" />
