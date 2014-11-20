@@ -21,10 +21,6 @@ import model.User;
  *
  */
 public class BookingHistoryDAO {
-	private final String HOST_ADDRESS = "cse.unl.edu";
-	private final String USER_DATABASE = "mmoraesg";
-	private final String USERNAME = "mmoraesg";
-	private final String PASSWORD = "haremsc4r3m";
 
 	/*
 	 * We are going to use a CRUD to access the Objects at the Database
@@ -43,8 +39,7 @@ public class BookingHistoryDAO {
 	 */
 	public ArrayList<BookingHistoryModel> getBookingHistory(User user, int startPageIndex, int numRecordsPerPage) {
 
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 
 		getBookingHistoryJson(user);
 
@@ -93,8 +88,7 @@ public class BookingHistoryDAO {
 		
 		try {
 			
-			JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-					PASSWORD);
+			JDBCHelper jdbc = new JDBCHelper();
 			
 			ArrayList<Object> param = new ArrayList<Object>();
 			
@@ -125,8 +119,7 @@ public class BookingHistoryDAO {
 	 */
 	public JsonObject getBookingHistoryJson(User user) {
 
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 
 		ArrayList<Object> param = new ArrayList<Object>();
 

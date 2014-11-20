@@ -1,25 +1,54 @@
 package utilities;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.sql.PreparedStatement;
-import java.sql.Timestamp;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Properties;
 
 public class JDBCHelper {
 
 	public Connection conn;
+	String host;
+	String db;
+	String user;
+	String pwd;
 
-	public JDBCHelper(String host, String db, String user, String password) {
+	public JDBCHelper() {
 		try {
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		this.conn = this.initiateConnection(host, db, user, password);
+
+		try {
+			Properties prop = new Properties();
+
+			prop.load(this.getClass().getResourceAsStream(
+					"database-config.properties"));
+
+			host = prop.getProperty("HOST_ADDRESS");
+			db = prop.getProperty("USER_DATABASE");
+			user = prop.getProperty("USERNAME");
+			pwd = prop.getProperty("PASSWORD");
+
+		} catch (FileNotFoundException e) {
+			System.out
+					.println("property file <database-config.properties> not found in classpath");
+			e.printStackTrace();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		this.conn = this.initiateConnection(host, db, user, pwd);
 
 	}
 

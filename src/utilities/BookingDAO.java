@@ -11,11 +11,6 @@ import java.util.Map;
 import model.Book;
 //TODO EVERYTHING OF BOOKING
 public class BookingDAO {
-	private final String HOST_ADDRESS = "cse.unl.edu";
-	private final String USER_DATABASE = "mmoraesg";
-	private final String USERNAME = "mmoraesg";
-	private final String PASSWORD = "haremsc4r3m";
-	private final String CSE_DATABASE = "cse464";
 
 	/*
 	 * We are going to use a CRUD to access the Objects at the Database
@@ -30,8 +25,7 @@ public class BookingDAO {
 	 * @param book
 	 */
 	public void addBooking(Book book) {
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		ArrayList<Object> param = new ArrayList<Object>();
 		//param.add(new Date());
 		//param.add(book.getBookingId());
@@ -69,8 +63,7 @@ public class BookingDAO {
 	 */
 	public int getBookingId(ArrayList<Object> param) throws SQLException {
 		
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		
 		ResultSet rs1 = jdbc
 				.queryDB(

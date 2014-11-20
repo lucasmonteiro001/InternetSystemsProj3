@@ -14,11 +14,6 @@ import model.User;
  */
 //TODO update user
 public class FlightSearchDAO {
-	private final String HOST_ADDRESS = "cse.unl.edu";
-	private final String USER_DATABASE = "mmoraesg";
-	private final String USERNAME = "mmoraesg";
-	private final String PASSWORD = "haremsc4r3m";
-	private final String CSE_DATABASE = "cse464";
 
 	/*
 	 * We are going to use a CRUD to access the Objects at the Database
@@ -33,8 +28,7 @@ public class FlightSearchDAO {
  */
 	public ArrayList<Flight> readFlight(Flight flight) {
 		// (String host, String db, String user, String password){
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		ArrayList<Object> param = new ArrayList<Object>();
 		/**
 		 * param.add("Hello"); param.add(35767); param.add(4.0);
@@ -94,8 +88,7 @@ public class FlightSearchDAO {
 	 */
 	public ArrayList<Flight> readMultipleFlights(Flight flight) {
 		// (String host, String db, String user, String password){
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		ArrayList<Object> param = new ArrayList<Object>();
 		/**
 		 * param.add("Hello"); param.add(35767); param.add(4.0);

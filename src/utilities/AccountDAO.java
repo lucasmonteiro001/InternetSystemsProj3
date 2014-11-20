@@ -10,12 +10,6 @@ import model.Account;
  */
 public class AccountDAO {
 
-	private final String HOST_ADDRESS = "cse.unl.edu";
-	private final String USER_DATABASE = "mmoraesg";
-	private final String USERNAME = "mmoraesg";
-	private final String PASSWORD = "haremsc4r3m";
-	private final String CSE_DATABASE = "cse464";
-
 	/*
 	 * We are going to use a CRUD to access the Objects at the Database
 	 */
@@ -29,8 +23,7 @@ public class AccountDAO {
 	 */
 	public Account readAccount(Account account) {
 		// (String host, String db, String user, String password){
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		ArrayList<Object> param = new ArrayList<Object>();
 
 		param.add(account.getHolderId());
@@ -65,8 +58,7 @@ public class AccountDAO {
 	 * @param account
 	 */
 	public void addAccount(Account account) {
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		ArrayList<Object> param = new ArrayList<Object>();
 		param.add(account.getHolderId());
 		param.add(account.getRoutingNumber());
@@ -91,8 +83,7 @@ public class AccountDAO {
 	 * @param account
 	 */
 	public void removeAccount(Account account) {
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		ArrayList<Object> param = new ArrayList<Object>();
 		param.add(account.getId());
 		try {
@@ -108,8 +99,7 @@ public class AccountDAO {
 	}
 
 	public void updateAccount(Account account) {
-		JDBCHelper jdbc = new JDBCHelper(HOST_ADDRESS, USER_DATABASE, USERNAME,
-				PASSWORD);
+		JDBCHelper jdbc = new JDBCHelper();
 		ArrayList<Object> param = new ArrayList<Object>();
 		param.add(account.getBalance());
 		param.add(account.getHolderId());
