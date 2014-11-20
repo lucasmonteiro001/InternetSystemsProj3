@@ -61,7 +61,7 @@ public class ReviewAndBook extends HttpServlet {
 		User user 			= (User) session.getAttribute("user");
 		double totalCost 	= 0;
 		double cost			= 0;
-		
+		shoppingCart = new ArrayList <Book> ();
 		String json 		= request.getParameter("json");
 		JSONObject jObj;
 		String return_msg = "";
@@ -71,14 +71,12 @@ public class ReviewAndBook extends HttpServlet {
 		String numberOfSeats = jObj.get("numberOfSeats").toString();
 		session.setAttribute("classe", classe);
 		session.setAttribute("numberOfSeats", numberOfSeats);
-
-		if (shoppingCart == null && session.getAttribute("shoppingCart") == null) {
-	    	shoppingCart = new ArrayList <Book> ();
-	    }
-	    else {
-	    	shoppingCart = (ArrayList<Book>) session.getAttribute ("shoppingCart");
-	    }
 		
+
+		if (session.getAttribute("shoppingCart") != null) {
+	    	shoppingCart = (ArrayList<Book>)  session.getAttribute("shoppingCart");
+	    }
+
 		if (classe.equals("economy"))
 			cost = Integer.parseInt(numberOfSeats)*TX_ECONOMY_SEAT;
 		else if (classe.equals("business"))
