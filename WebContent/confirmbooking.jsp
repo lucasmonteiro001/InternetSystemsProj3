@@ -1,3 +1,11 @@
+<%@page import="java.text.NumberFormat"%>
+<%@page import="java.util.Locale"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="model.Flight"%>
+<%@page import="model.Book"%>
+
 <jsp:include page="WEB-INF/classes/header.jsp"/>
 
 <form class="form-horizontal" role="form" name="input" action="Transaction">
@@ -5,25 +13,45 @@
 <h3>Confirmation</h3>
 <div class="well well-sm span4">
 
+	<%
+		double aggregateCost = 0;
+		String aggregateCostFormatted = "Empty Shopping Cart. (0.00)";
+		ArrayList<Book> fs = (ArrayList<Book>) session
+				.getAttribute("shoppingCart");
+		if (fs != null) {
+	%>
+
 	<table class="table table-hover" style="background-color:white">
 			<thead>
 				<tr>
-					<th> Date </th> <th> From </th> <th> To </th> <th> Flight Number </th>
-					<th> Departure Time </th> <th> Arrival Time </th> <th> Number of Stops </th><th> Cost </th>
+					<th> Date of Booking</th> 
+					<th> Flight Id </th> 
+					<th> Total Cost </th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
-					<td><jsp:getProperty property="departure" name="flightBean" /></td>
-					<td><jsp:getProperty property="source" name="flightBean" /></td>
-					<td><jsp:getProperty property="destination" name="flightBean" /></td>
-					<td><jsp:getProperty property="id" name="flightBean" /></td>
-					<td><jsp:getProperty property="departure" name="flightBean" /></td>
-					<td><jsp:getProperty property="arrival" name="flightBean" /></td>
-					<td> 1 </td>
-					<td> <%= session.getAttribute("totalCost") %></td>
-
-				</tr>
+			<%
+				Iterator<Book> it = fs.iterator();
+				while (it.hasNext()) {
+					Book book = (Book) it.next();
+			%>
+			<tr>
+				<td><%=book.getDateOfBooking() %></td>
+				<td><%=book.getFlightIds()%></td>
+				<td><%=book.getTotalCost()%></td>
+			</tr>
+			<%
+				aggregateCost += book.getTotalCost();
+						NumberFormat numberFormatter = NumberFormat
+								.getNumberInstance(new Locale("en_US"));
+						aggregateCostFormatted = numberFormatter
+								.format(aggregateCost);
+					}
+			%>
+			<% } else { %>
+			Your shopping cart is empty.
+			<% } %>
 			</tbody>
 		</table><br>
 </div>

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.NumberFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 
@@ -89,6 +90,7 @@ public class ReviewAndBook extends HttpServlet {
 		book.setNumberOfSeats(Integer.parseInt(numberOfSeats));
 		book.setFlightIds(flight.getId());
 		book.setTotalCost(cost);
+		book.setDateOfBooking(new Date());
 		shoppingCart.add(book);
 		Iterator<Book> it = shoppingCart.iterator();
 		
