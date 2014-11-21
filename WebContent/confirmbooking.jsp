@@ -1,3 +1,13 @@
+<%
+	if (session.getAttribute("shoppingCart") == null) {
+		response.sendRedirect("flightsearchquery.jsp");
+	} else {
+		ArrayList<Book> b = (ArrayList<Book>)session.getAttribute("shoppingCart");
+		if (b.size() == 0)
+			response.sendRedirect("flightsearchquery.jsp");
+	}
+%>
+
 <%@page import="java.text.NumberFormat"%>
 <%@page import="java.util.Locale"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -61,9 +71,9 @@
 	<div class="well well-sm span4">
 				<div class="form-group"><div class="col-sm-7 error" style="color:red;display: block;"></div></div>
 				<div class="form-group">
-					<label class="col-sm-2 control-label" for="accHolderName">Account holder name</label>
+					<label class="col-sm-2 control-label" for="accountHolderId">Account holder id</label>
 					<div class="col-sm-2">
-						<input type="textfield" class="form-group" id="accountHolderId" placeholder="Account holder name" name="accountHolderId">
+						<input type="textfield" class="form-group" id="accountHolderId" placeholder="Account holder id" name="accountHolderId">
 					</div>
 				</div>
 				<div class="form-group">
@@ -82,7 +92,7 @@
 	<div class="alert alert-success alert-dismissible" role="alert"> 
 		<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span>
 		<span class="sr-only">Close</span></button>
-		Your transaction was successfuly recorded. Thanks for flying with  Air Minas.
+		Your transaction was successfully recorded. Thanks for flying with  Air Minas.
 	</div>
 </div>
 
@@ -153,6 +163,7 @@
 					$(".acct-info").remove();
 					$(".form-pass-details").show();
 					$(".trans-conf").show();
+					$(".trans-conf").fadeOut(4000);
 					update_history_function(jsonData);
 					//On Success: Show Success/Failure message and a form for the user to
 					//enter passenger details (Name, Age, Sex, etc...), Print Ticket button. Also calls update_history_function.
@@ -180,10 +191,10 @@
 			cache: false,
 			success: function(data) {
 				if (data.success == "true") { // If success == true
-					alert("Booking History updated");
+					console.log("Booking History updated");
 				}
 				else { // If request was not successfull
-					alert("Failed to update Booking History");
+					console.log("Failed to update Booking History");
 				}
 				
 			},

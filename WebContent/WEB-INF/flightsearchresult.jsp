@@ -52,9 +52,9 @@
 		<label for="choosenFlight" class="error" style="display: none">Please
 			select one option</label><br> <input type="button" class="btn"
 			value="Back to Search page" onclick="window.history.back();">
-		<input type="button" class="btn" value="See booking history page"
-			onclick="window.location='BookingHistory';"> <input
-			type="submit" class="btn btn-primary" name="send"
+		<!-- <input type="button" class="btn" value="See booking history page"
+			onclick="window.location='BookingHistory';">  -->
+			<input type="submit" class="btn btn-primary" name="send"
 			value="View and Book" align="right">
 	</form>
 	<%
@@ -64,9 +64,9 @@
 		for your search.</p>
 
 	<input type="button" class="btn" value="Back to Search page"
-		onclick="window.history.back();"> <input type="button"
+		onclick="window.history.back();"> <!-- <input type="button"
 		class="btn" value="See booking history page"
-		onclick="window.location='BookingHistory';">
+		onclick="window.location='BookingHistory';"> -->
 	<%
 		}
 	%>

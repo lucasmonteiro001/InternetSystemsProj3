@@ -55,7 +55,7 @@ public class BookingHistoryDAO {
 						"SELECT b.date_of_booking, f.source, f.destination, f.id, f.departure, f.arrival, b.total_cost "
 								+ "FROM mmoraesg.user u, mmoraesg.booking b, mmoraesg.booking_flight bf, cse464.flights f "
 								+ "WHERE  u.id = ? AND u.id = b.user_id AND b.id = bf.booking_id AND bf.flight_id = f.id "
-								+ "LIMIT ?, ?;",
+								+ " ORDER BY b.date_of_booking DESC LIMIT ?, ?;",
 						param);
 
 		try {

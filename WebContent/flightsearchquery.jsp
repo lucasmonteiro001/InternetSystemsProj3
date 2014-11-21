@@ -29,7 +29,7 @@ String[] airports = {"ATL", "ANC", "AUS", "BWI", "BOS",
     <h4>Details of your travel: </h4>
 	<form class="form-horizontal form-group-sm" role="form" name="input" action="FlightSearchQuery" method="post" id="input">
 		<div class="form-group">
-  			<label class="col-sm-2 control-label" for="source">Source</label>
+  			<label class="col-sm-2 control-label" for="source">From</label>
   			<select name="source" form="input" id="source" required>
   				<option value=""> </option>
   				<% for (int i = 0; i < airports.length ; i++) {%>
@@ -38,7 +38,7 @@ String[] airports = {"ATL", "ANC", "AUS", "BWI", "BOS",
   			</select>
 		</div>
 		<div class="form-group">
-  			<label class="col-sm-2 control-label" for="destination">Destination</label>
+  			<label class="col-sm-2 control-label" for="destination">To</label>
   			<select name="destination" form="input" id="destination" required>
   				<option value=""> </option>
   				<% for (int i = 0; i < airports.length ; i++) {%>
@@ -52,16 +52,6 @@ String[] airports = {"ATL", "ANC", "AUS", "BWI", "BOS",
   				<input type="text" style="margin-left:1px" class="form-group" id="departure" name="departure" required>
   			
 		</div>
-		<div class="form-group">
-  			<label class="col-sm-2 control-label" for="class">Class</label>
-  			<div class="col-sm-10">
-				<select class="form-group" id="class" name="class">
-		    		<option value="economy">Economy</option>
-		    		<option value="business">Business</option>
-		    		<option value="firstclass">First Class</option>
-		    	</select>
-		    </div>
-    	</div>
     	<button type="submit" class="btn btn-primary btn-sm col-md-offset-2" value="Search">Search</button>
 		<button type="button" class="btn btn-danger btn-sm" value="Exit" onClick="window.location='login.jsp'">Exit</button>
 	</form>    

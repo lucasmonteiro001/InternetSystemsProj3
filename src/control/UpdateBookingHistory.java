@@ -1,6 +1,7 @@
 package control;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,15 +64,16 @@ public class UpdateBookingHistory extends HttpServlet {
 
 			account = accountDao.readAccount(account);
 			
-			book.setFlightIds(flight.getId());
-			book.setNumberOfSeats(Integer.parseInt(session.getAttribute(
-					"totalSeats").toString()));
-			book.setTotalCost(Double.parseDouble(session.getAttribute(
-					"totalCost").toString()));
-			book.setAccountId(account.getId());
-			book.setUserId(user.getId());
-			bookingDao.addBooking(book);
-			session.setAttribute("booking", book);
+			@SuppressWarnings("unchecked")
+			ArrayList<Book> shoppingCart = (ArrayList<Book>) session.getAttribute("shoppingCart");
+			
+			for (Book booking : shoppingCart) {
+				booking.setAccountId(account.getId());
+				booking.setUserId(user.getId());
+				bookingDao.addBooking(booking);
+			}
+			
+			session.setAttribute("shoppingCart", new ArrayList<BookingHistory>());
 			
 			String return_msg = js.getJsonFormatted(true,
 					"Thanks! Your transaction was successfully recorded!");
