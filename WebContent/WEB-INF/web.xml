@@ -169,4 +169,14 @@
     <servlet-name>ShoppingCart</servlet-name>
     <url-pattern>/ShoppingCart</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>SessionForBankHelper</display-name>
+    <servlet-name>SessionForBankHelper</servlet-name>
+    <servlet-class>control.SessionForBankHelper</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>SessionForBankHelper</servlet-name>
+    <url-pattern>/SessionForBankHelper</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -64,8 +64,10 @@ public class FlightSearchResult extends HttpServlet {
 	 */
 	public Flight getChoosenFlight(HttpServletRequest request) {
 
+		@SuppressWarnings("unchecked")
 		ArrayList<Flight> flights = (ArrayList<Flight>) session
 				.getAttribute("flights");
+		@SuppressWarnings("rawtypes")
 		Iterator it = flights.iterator();
 
 		while (it.hasNext()) {

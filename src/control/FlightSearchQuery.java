@@ -11,9 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import utilities.FlightSearchDAO;
 import model.Flight;
-import model.User;
+import utilities.FlightSearchDAO;
 
 /**
  * Servlet implementation class FlightSearch
@@ -41,6 +40,7 @@ public class FlightSearchQuery extends HttpServlet {
 
 	 */
 	
+	@SuppressWarnings("deprecation")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Just can work if a session is there

@@ -2,7 +2,6 @@ package control;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Enumeration;
 
 import javax.json.JsonObject;
 import javax.servlet.RequestDispatcher;
@@ -12,14 +11,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import model.BookingHistoryModel;
+import model.User;
+import utilities.BookingHistoryDAO;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.reflect.TypeToken;
-
-import model.BookingHistoryModel;
-import model.User;
-import utilities.BookingHistoryDAO;
 
 /**
  * Servlet implementation class Booking

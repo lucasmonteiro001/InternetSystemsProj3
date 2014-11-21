@@ -1,8 +1,11 @@
 package utilities;
 
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,6 +32,8 @@ public class BookingDAO {
 		ArrayList<Object> param = new ArrayList<Object>();
 		//param.add(new Date());
 		//param.add(book.getBookingId());
+
+		
 		param.add(book.getFlightIds());
 		param.add(book.getNumberOfSeats());
 		param.add(book.getAccountId());

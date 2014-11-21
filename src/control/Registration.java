@@ -19,6 +19,10 @@ import model.User;
  */
 public class Registration extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private User user;
 	/**
 	 * This doGet is "just in cause". Will not be used in this application. Call doPost.
@@ -34,6 +38,7 @@ public class Registration extends HttpServlet {
 	 * @param request HttpServletRequest with information of request like username and password.
 	 * @param response HttpServletResponse with information of where to go in case if the registration is successful or not
 	 */
+	@SuppressWarnings("deprecation")
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 

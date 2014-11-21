@@ -1,15 +1,12 @@
 package control;
 
 import java.io.IOException;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-
-import org.apache.jasper.tagplugins.jstl.core.If;
 
 import model.User;
 
@@ -22,8 +19,11 @@ import model.User;
  *
  */
 public class Login extends HttpServlet {
-	private User user;
-	private Users us;
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String EMAIL_PARAMETER = "email";
 	private String PASSWORD_PARAMETER = "password";
 
@@ -81,31 +81,4 @@ public class Login extends HttpServlet {
 			}
 			
 		}
-/*		
-		// Create a session object if it is already not created.
-		HttpSession session = request.getSession();
-		
-		User usr = (User) session.getAttribute("usr");
-		// Get session creation time.
-		Date createTime = new Date(session.getCreationTime());
-		// Get last access time of this web page.
-		//Date lastAccessTime = new Date(session.getLastAccessedTime());
-		
-		user = new User(session.getAttribute(EMAIL_PARAMETER).toString(),
-				session.getAttribute(PASSWORD_PARAMETER).toString());
-
-		us = new Users();
-		if (us.userExists(user)== true) {
-			String hashed = ""+user.getPassword().hashCode();
-			if (hashed.equals(us.getUser().getPassword()))
-				response.sendRedirect("flightsearchquery.jsp");
-			else {
-			response.sendRedirect("login.jsp");
-		}
-
-		} else {
-			response.sendRedirect("registration.jsp");
-		}
-
-	}*/
 }

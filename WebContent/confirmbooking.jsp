@@ -140,19 +140,21 @@
 		confirm_function();
 		event.preventDefault();
 	});
-	 
+	
 	function confirm_function() {
 		
 		var accountHolderId 		= $("#accountHolderId").val();
 		var accountRoutingNumber 	= $("#accountRoutingNumber").val();
-		
+		var totalCost				= "" + <%=session.getAttribute("totalCost")%>;
+			
 		var jsonDataObject = new Object();
 		jsonDataObject.accountHolderId 		= accountHolderId;
 		jsonDataObject.accountRoutingNumber = accountRoutingNumber;
+		jsonDataObject.totalCost			= totalCost;
 		
 		var jsonData = JSON.stringify(jsonDataObject);
 		
-		$.ajax({ url : "Bank",
+		$.ajax({ url : "/Team15-HW3-Banking/Bank1",
 			type : "GET",
 			data : {action:"export",json:jsonData},
 			contentType: 'application/json',

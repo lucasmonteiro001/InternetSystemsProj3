@@ -11,7 +11,6 @@ import javax.servlet.http.HttpSession;
 
 import model.Account;
 import model.Book;
-import model.Flight;
 import model.User;
 
 import org.json.JSONObject;
@@ -42,17 +41,14 @@ public class UpdateBookingHistory extends HttpServlet {
 		response.setContentType("application/json");
 		
 		HttpSession session 	= request.getSession();
-		Flight flight 			= (Flight) session.getAttribute("flightBean");
 		User user 				= (User) session.getAttribute("user");
 		
-		Book book 				= new Book();
 		BookingDAO bookingDao	= new BookingDAO();
 		JsonHelper js 			= new JsonHelper();
 		Account account			= new Account();
 		AccountDAO accountDao 	= new AccountDAO();
 		
 		try {
-			String action 	= request.getParameter("action");
 			String json 	= request.getParameter("json");
 			JSONObject jObj = new JSONObject(json);
 			

@@ -1,8 +1,5 @@
 package control;
 
-import java.io.FileWriter;
-import java.util.Scanner;
-
 import model.User;
 import utilities.UserDAO;
 /**
@@ -14,8 +11,6 @@ import utilities.UserDAO;
 public class Users {
 
 	private User user;
-	private Scanner sc;
-	private FileWriter fw;
 	private UserDAO userDataAccessObject = null;
 
 	public Users() {

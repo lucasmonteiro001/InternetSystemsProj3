@@ -1,12 +1,13 @@
 package control;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.text.DateFormat;
 import java.text.NumberFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -15,16 +16,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import utilities.AccountDAO;
-import utilities.BookingDAO;
-import utilities.JsonHelper;
-import model.Account;
 import model.Book;
 import model.Flight;
 import model.User;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import utilities.JsonHelper;
 
 /**
  * Servlet implementation class ReviewAndBook
@@ -52,6 +51,7 @@ public class ReviewAndBook extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doGet (HttpServletRequest request,
 		HttpServletResponse response) throws ServletException, IOException{
 		
@@ -90,7 +90,15 @@ public class ReviewAndBook extends HttpServlet {
 		book.setNumberOfSeats(Integer.parseInt(numberOfSeats));
 		book.setFlightIds(flight.getId());
 		book.setTotalCost(cost);
-		book.setDateOfBooking(new Date());
+		
+		DateFormat df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		Calendar calobj = Calendar.getInstance();
+		String date_s = df.format(calobj.getTime());
+		Date date = df.parse(date_s);
+		
+		book.setDateOfBooking(date);
+		
+		
 		shoppingCart.add(book);
 		Iterator<Book> it = shoppingCart.iterator();
 		

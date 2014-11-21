@@ -46,6 +46,7 @@ public class PageUtilities {
 		systemPages.put("transactionconfirmationpage.jsp",
 				"Transaction confirmation");
 		systemPages.put("shoppingcart.jsp", "Shopping Cart");
+		systemPages.put("confirmbooking.jsp", "Confirm");
 		
 		return systemPages;
 	}
