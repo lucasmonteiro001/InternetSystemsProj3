@@ -44,7 +44,7 @@ public class BookingDAO {
 		try {
 			// Insert in Booking table
 			ResultSet rs1 = jdbc.insertDB(
-					"INSERT INTO mmoraesg.booking (date_of_booking, flight_ids, number_of_seats, account_id, user_id, total_cost) VALUES (curdate(), ?, ?, ?, ?, ?);",
+					"INSERT INTO mmoraesg.booking (date_of_booking, flight_ids, number_of_seats, account_id, user_id, total_cost) VALUES (NOW(), ?, ?, ?, ?, ?);",
 					param);
 			
 			int bookingId = getBookingId(param);
@@ -72,7 +72,7 @@ public class BookingDAO {
 		
 		ResultSet rs1 = jdbc
 				.queryDB(
-						"SELECT id FROM mmoraesg.booking WHERE date_of_booking = curDate() AND "
+						"SELECT id FROM mmoraesg.booking WHERE  "
 						+ "flight_ids = ? AND number_of_seats = ? AND account_id = ? AND  user_id = ? AND total_cost = ?;",
 						param);
 		
