@@ -179,4 +179,14 @@
     <servlet-name>SessionForBankHelper</servlet-name>
     <url-pattern>/SessionForBankHelper</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>StringTestServlet</display-name>
+    <servlet-name>StringTestServlet</servlet-name>
+    <servlet-class>utilities.StringTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>StringTestServlet</servlet-name>
+    <url-pattern>/StringTestServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

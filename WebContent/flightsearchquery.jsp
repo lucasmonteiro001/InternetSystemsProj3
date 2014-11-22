@@ -65,7 +65,11 @@ $.datepicker.setDefaults({
 
 $( "#departure" ).datepicker({ 
 	appendText: "&nbsp; (mm-dd-yyyy)",
-	autoSize: true
+	autoSize: true,
+	minDate: 0, 
+	maxDate: "+365D",
+	changeMonth: true,
+    changeYear: true
 });
 
 </script>
