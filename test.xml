@@ -41,7 +41,7 @@
                 message += aChar;
              }
           }
-          document.getElementById('content_div').innerHTML = "<b>Your messagessss: </b>" + message;
+          document.getElementById('content_div').innerHTML = "<b>Yasdfsadfsadfessss: </b>" + message;
      }
      </script>
 
