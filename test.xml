@@ -1,12 +1,8 @@
-<?xml
- version="version_number"
- encoding="encoding_declaration"
- standalone="standalone_status" ?>
 <Module>
 <ModulePrefs title="My Gadget">
 <Optional feature="atlassian.util"/>
 </ModulePrefs>
-<Content type="html">
+<Content type="page">
 <![CDATA[
 #requireResource("com.atlassian.gadgets.publisher:ajs-gadgets")
  #includeResources()
