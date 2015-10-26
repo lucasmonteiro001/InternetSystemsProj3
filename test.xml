@@ -1,0 +1,32 @@
+
+<Module>
+<ModulePrefs title="My Gadget">
+<Optional feature="atlassian.util"/>
+</ModulePrefs>
+<Content type="html">
+<![CDATA[
+#requireResource("com.atlassian.gadgets.publisher:ajs-gadgets")
+ #includeResources()
+ 
+ <div id="main">
+ <script language="javascript">
+ function showRendererBaseUrl() {
+ document.getElementById("main").innerHTML =
+ atlassian.util.getRendererBaseUrl(); 
+ };
+ gadgets.util.registerOnLoadHandler(showRendererBaseUrl);
+ </script>
+ </div>
+ 
+ <script language="javascript">	
+ var userName;
+ jQuery(document).ready(function() {
+ AJS.$.get("/rest/auth/1/session", function (data) { 
+ userName = data.name; 
+ });
+ });	
+ alert(userName);
+ </script>
+]]>
+</Content>
+</Module>
