@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Module>
-  <ModulePrefs title="Magic Decoder">
+  <ModulePrefs title="Magic sDecoder">
   <Optional feature="atlassian.util"/>
   </ModulePres>
   <Content type="html">
